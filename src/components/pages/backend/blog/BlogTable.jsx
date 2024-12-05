@@ -18,9 +18,9 @@ import SpinnerTable from "../partials/spinners/SpinnerTable";
 
 const BlogTable = ({ setItemEdit }) => {
   const { store, dispatch } = React.useContext(StoreContext);
-   const [isActive, setIsActive] = React.useState(0);
+  const [isActive, setIsActive] = React.useState(0);
   const [id, setId] = React.useState(null);
-  
+
   const {
     isLoading,
     isFetching,
@@ -108,7 +108,7 @@ const BlogTable = ({ setItemEdit }) => {
                     </td>
                     <td className="capitalize">{item.blog_title}</td>
                     <td className="capitalize">{item.blog_category}</td>
-                    <td className="capitalize">{item.blog_level}</td>
+                    <td className="capitalize">{item.blog_date}</td>
 
                     <td>
                       <ul className="table-action">
@@ -167,8 +167,17 @@ const BlogTable = ({ setItemEdit }) => {
         </div>
       </div>
 
-      {store.isDelete && <ModalDelete />}
-      {store.isConfirm && <ModalConfirm />}
+      {store.isDelete && (
+        <ModalDelete mysqlApiDelete={`/v2/blog/${id}`} queryKey="blog" />
+      )}
+
+      {store.isConfirm && (
+        <ModalConfirm
+          queryKey="blog"
+          mysqlApiArchive={`/v2/blog/active/${id}`}
+          active={isActive}
+        />
+      )}
     </>
   );
 };

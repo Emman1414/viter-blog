@@ -1,25 +1,28 @@
 import React from "react";
 import ModalWrapper from "../partials/modals/ModalWrapper";
-import { ImagePlusIcon, X } from "lucide-react";
+import { ImagePlusIcon, Minus, X } from "lucide-react";
 import SpinnerButton from "../partials/spinners/SpinnerButton";
 import { StoreContext } from "@/components/store/storeContext";
 import { setIsAdd } from "@/components/store/storeAction";
-import { Form, Formik } from "formik";
+import { Field, FieldArray, Form, Formik } from "formik";
 import {
   InputPhotoUpload,
+  InputSelect,
   InputText,
   InputTextArea,
 } from "@/components/helpers/FormInputs";
 import * as Yup from "Yup";
 import useUploadPhoto from "@/components/custom-hook/useUploadPhoto";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { imgPath } from "@/components/helpers/functions-general";
 
 const ModalAddBlog = ({ itemEdit }) => {
   const { dispatch } = React.useContext(StoreContext);
 
   const queryClient = useQueryClient();
 
-  // const { uploadPhoto, handleChangePhoto, photo } = useUploadPhoto("");
+  const { uploadPhoto, handleChangePhoto, photo } =
+    useUploadPhoto("/v2/upload-photo");
 
   const mutation = useMutation({
     mutationFn: (values) =>
@@ -54,21 +57,17 @@ const ModalAddBlog = ({ itemEdit }) => {
     blog_title: itemEdit ? itemEdit.blog_title : "",
     blog_category: itemEdit ? itemEdit.blog_category : "",
     blog_author: itemEdit ? itemEdit.blog_author : "",
-    blog_datetime: itemEdit ? itemEdit.blog_datetime : "",
+    blog_date: itemEdit ? itemEdit.blog_date : "",
     blog_description: itemEdit ? itemEdit.blog_description : "",
     blog_information: itemEdit ? itemEdit.blog_information : "",
 
     blog_title_old: itemEdit ? itemEdit.blog_title : "",
-
-    blog_ingredients: itemEdit
-      ? JSON.parse(itemEdit.blog_ingredients)
-      : [{ ingredients: "", amount: "", unit: "" }],
   };
   const yupSchema = Yup.object({
     blog_title: Yup.string().required("required"),
     blog_category: Yup.string().required("required"),
     blog_author: Yup.string().required("required"),
-    blog_datetime: Yup.string().required("required"),
+    blog_date: Yup.string().required("required"),
     blog_description: Yup.string().required("required"),
     blog_information: Yup.string().required("required"),
   });
@@ -161,91 +160,18 @@ const ModalAddBlog = ({ itemEdit }) => {
                           <option value="" hidden>
                             Select Category
                           </option>
-                          <option value="chicken">Chicken</option>
-                          <option value="beef">Beef</option>
-                          <option value="pasta">Pasta</option>
-                        </InputSelect>
-                      </div>
-                      <div className="input-wrap">
-                        <InputSelect label="Level" name="blog_level">
-                          <option value="" hidden>
-                            Select Level
-                          </option>
-                          <option value="easy">Easy</option>
-                          <option value="normal">Normal</option>
-                          <option value="difficult">Difficult</option>
+                          <option value="social">Social</option>
+                          <option value="economics">Economics</option>
+                          <option value="environmental">Environmental</option>
                         </InputSelect>
                       </div>
 
                       <div className="input-wrap">
-                        <InputText
-                          label="Serving"
-                          type="text"
-                          name="blog_serving"
-                        />
-                      </div>
-
-                      <div className="input-wrap">
-                        <InputText
-                          label="Prep Time"
-                          type="text"
-                          name="blog_prep_time"
-                        />
+                        <InputText label="Date" type="text" name="blog_date" />
                       </div>
                     </div>
 
-                    <div className="ingredient">
-                      <FieldArray
-                        name="blog_ingredients"
-                        render={({ push, remove }) => (
-                          <div className="input-wrap">
-                            <div className="flex justify-between items-center">
-                              <h3 className="mb-0">Ingredients</h3>
-                              <button
-                                className="bg-alert  p-1 px-2 text-sm rounded-md"
-                                type="button"
-                                onClick={() =>
-                                  push({
-                                    ingredients: "",
-                                    amount: "",
-                                    unit: "",
-                                  })
-                                }
-                              >
-                                Add
-                              </button>
-                            </div>
-
-                            <div className="overflow-y-auto custom-scroll max-h-[500px] h-full pr-2">
-                              {props.values.blog_ingredients.map(
-                                (ingredients, index) => (
-                                  <div
-                                    className="grid grid-cols-[1fr,_.3fr,_.8fr_.2fr] gap-3 mt-3"
-                                    key={index}
-                                  >
-                                    <div>
-                                      <label htmlFor="">ingredients</label>
-                                      <Field
-                                        name={`blog_ingredients[${index}].ingredients`}
-                                      />
-                                    </div>
-
-                                    <button
-                                      className="size-[33px] bg-accent text-white rounded-md center-all self-end"
-                                      onClick={() => remove(index)}
-                                    >
-                                      <Minus />
-                                    </button>
-                                  </div>
-                                )
-                              )}
-                            </div>
-                          </div>
-                        )}
-                      />
-                    </div>
-
-                    <div className="instruction">
+                    <div className="description">
                       <div className="input-wrap">
                         <h3>Author Information</h3>
                         <InputTextArea
@@ -268,7 +194,7 @@ const ModalAddBlog = ({ itemEdit }) => {
                   <div className="flex justify-end gap-3 mt-5">
                     <button className="btn btn-accent" type="submit">
                       {mutation.isPending && <SpinnerButton />}
-                      {itemEdit ? "Save" : "Add"}
+                   Add
                     </button>
                     <button
                       className="btn btn-cancel"

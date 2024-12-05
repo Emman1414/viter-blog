@@ -1,3 +1,4 @@
+import useQueryData from "@/components/custom-hook/useQueryData";
 import Banner from "./Banner";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -7,6 +8,17 @@ import WhatWeDo from "./WhatWeDo";
 import Work from "./Work";
 
 const Homepage = () => {
+  const {
+    isLoading,
+    isFetching,
+    error,
+    data: result,
+  } = useQueryData(
+    `/v2/blog`, // endpoint
+    "get", // method
+    "blog"
+  );
+
   return (
     <>
       <div className="p-2">

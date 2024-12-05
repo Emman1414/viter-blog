@@ -4,6 +4,7 @@ import Homepage from "./components/pages/frontend/homepage/Homepage";
 import Single from "./components/pages/frontend/single/Single";
 import { StoreProvider } from "./components/store/storeContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React from "react";
 
 const App = () => {
 
@@ -15,7 +16,7 @@ const App = () => {
         <Router>
           <Routes>
             <Route index element={<Homepage />} />
-            <Route path="/admin/single" element={<Single />} />
+            <Route path="/admin/single/:slug" element={<Single />} />
             <Route path="/admin/blog" element={<Blog />} />
           </Routes>
         </Router>

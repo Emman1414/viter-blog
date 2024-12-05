@@ -5,6 +5,25 @@ import Footer from "../homepage/Footer";
 import { Link } from "react-router-dom";
 
 const Single = () => {
+
+  const { slug } = useParams();
+
+  const {
+    isLoading,
+    isFetching,
+    error,
+    data: result,
+  } = useQueryData(
+    `/v2/recipe`, // endpoint
+    "get", // method
+    "recipe"
+  );
+
+  const getSingleRecipe = () =>
+    result?.data.filter(
+      (item) => item.recipe_title === slug.replaceAll("-", " ")
+    );
+
   return (
     <>
       <Header />

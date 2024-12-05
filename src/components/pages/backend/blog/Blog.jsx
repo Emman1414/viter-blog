@@ -20,6 +20,7 @@ const Blog = () => {
       dispatch(setIsAdd(true));
       setItemEdit(null);
   };
+
   
   return (
     <>
@@ -50,8 +51,6 @@ const Blog = () => {
       {store.validate && <ModalValidation />}
       {store.error && <ModalError />}
       {store.success && <ToastSuccess />}
-      {/* <SpinnerWindow /> */}
-
       {store.isAdd && <ModalAddBlog itemEdit={itemEdit} />}
     </>
   );

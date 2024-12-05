@@ -5,12 +5,13 @@ class Blog
     public $blog_title;
     public $blog_category;
     public $blog_author;
-    public $blog_datetime;
     public $blog_description;
-    public $blog_is_active;
     public $blog_image;
-    public $blog_created;
+    public $blog_date;
     public $blog_information;
+    public $blog_is_active;
+    public $blog_created;
+    public $blog_datetime;
 
     public $connection;
     public $lastInsertedId;
@@ -32,33 +33,36 @@ class Blog
         try {
             $sql = "insert into {$this->tblblog} ";
             $sql .= "( blog_title, ";
+            $sql .= ":blog_is_active, ";
             $sql .= "blog_category, ";
             $sql .= "blog_author	, ";
             $sql .= "blog_datetime, ";
+            $sql .= "blog_date, ";
             $sql .= "blog_description, ";
             $sql .= "blog_image, ";
             $sql .= "blog_information, ";
-            $sql .= "blog_is_active, ";
             $sql .= "blog_created ) values ( ";
             $sql .= ":blog_title, ";
+            $sql .= ":blog_is_active, ";
             $sql .= ":blog_category, ";
             $sql .= ":blog_author, ";
             $sql .= ":blog_datetime, ";
+            $sql .= ":blog_date, ";
             $sql .= ":blog_description, ";
             $sql .= ":blog_image, ";
             $sql .= ":blog_information, ";
-            $sql .= ":blog_is_active, ";
             $sql .= ":blog_created ) ";
             $query = $this->connection->prepare($sql);
             $query->execute([
                 "blog_title" => $this->blog_title,
+                "blog_is_active" => $this->blog_is_active,
                 "blog_category" => $this->blog_category,
-                "blog_author" => $this->blog_serving,
-                "blog_datetime" => $this->blog_datetime,
+                "blog_author" => $this->blog_author,
+                "blog_date" => $this->blog_date,
                 "blog_description" => $this->blog_description,
                 "blog_image" => $this->blog_image,
-                "blog_information" => $this->blog_level,
-                "blog_is_active" => $this->blog_is_active,
+                "blog_information" => $this->blog_information,
+                "blog_datetime" => $this->blog_datetime,
                 "blog_created" => $this->blog_created,
             ]);
             $this->lastInsertedId = $this->connection->lastInsertId();
