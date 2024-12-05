@@ -38,7 +38,7 @@
   }
 
   body {
-    @apply text-light font-['Roboto'] leading-tight overflow-x-hidden p-4 border border-black m-4;
+    @apply text-light font-['Roboto'] leading-tight overflow-x-hidden p-4;
   }
 
   h1,
