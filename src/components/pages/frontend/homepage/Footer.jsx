@@ -8,7 +8,12 @@ const Footer = () => {
         <div className="grid grid-cols-[1fr_2fr] mb-16">
           <div className="footer-info flex flex-col min-h-[300px] justify-between">
             <div>
-              <h3 className="uppercase mb-10">FYLLA</h3>
+              <h3 className="uppercase mb-10">
+                <img
+                  src="https://cdn.prod.website-files.com/63661389dd2417f19a0d89d3/636a2cb5715eea61d64a3119_logo.svg"
+                  alt=""
+                />
+              </h3>
               <ul>
                 <li>Fylla Digital Agency </li>
                 <li>Main Street</li>
@@ -19,7 +24,7 @@ const Footer = () => {
               <li>
                 <a
                   href=""
-                  className="size-[30px] center-all rounded-full border border-black text-xs"
+                  className="size-[30px] center-all rounded-full border border-black text-xs hover:bg-black hover:text-white transition-all"
                 >
                   TW
                 </a>
@@ -27,7 +32,7 @@ const Footer = () => {
               <li>
                 <a
                   href=""
-                  className="size-[30px] center-all rounded-full border border-black text-xs"
+                  className="size-[30px] center-all rounded-full border border-black text-xs hover:bg-black hover:text-white transition-all"
                 >
                   IN
                 </a>
@@ -35,7 +40,7 @@ const Footer = () => {
               <li>
                 <a
                   href=""
-                  className="size-[30px] center-all rounded-full border border-black text-xs"
+                  className="size-[30px] center-all rounded-full border border-black text-xs hover:bg-black hover:text-white transition-all"
                 >
                   BE
                 </a>

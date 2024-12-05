@@ -38,7 +38,7 @@
   }
 
   body {
-    @apply text-light font-['Roboto'] leading-tight overflow-x-hidden p-4;
+    @apply text-light font-['Roboto'] leading-tight overflow-x-hidden;
   }
 
   h1,
@@ -240,23 +240,33 @@
     @apply border border-alert animate-shake rounded-md;
   }
 
-  .btn-animate{
+  .btn-animate {
     @apply text-center inline-block text-xs px-5 py-2.5 bg-light text-transparent rounded-md uppercase relative overflow-hidden;
   }
 
-  .btn-animate::before{
+  .btn-animate::before {
     @apply transition-all absolute content-[attr(data-text)] bottom-2 left-0 w-full text-dark block;
   }
 
-  .btn-animate::after{
+  .btn-animate::after {
     @apply transition-all absolute content-[attr(data-text)] -bottom-[14px] left-0 w-full text-dark block;
   }
 
-  .btn-animate:hover::before{
+  .btn-animate:hover::before {
     @apply bottom-10;
   }
-  .btn-animate:hover::after{
+  .btn-animate:hover::after {
     @apply bottom-2;
+  }
+
+  .blog-content h2 {
+    @apply text-4xl font-normal font-[syne];
+  }
+  .blog-content h3 {
+    @apply text-2xl font-normal font-[syne];
+  }
+  .blog-content p {
+    @apply leading-relaxed mb-5;
   }
 
   .input-photo-wrap span.error-show {
