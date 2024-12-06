@@ -74,7 +74,6 @@ const ModalAddBlog = ({ itemEdit }) => {
     blog_blog_author: Yup.string().required("required"),
   });
 
-
   return (
     <ModalWrapper>
       <div className="modal-main bg-primary absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[900px] w-full rounded-md border border-line">
@@ -90,14 +89,14 @@ const ModalAddBlog = ({ itemEdit }) => {
             validationSchema={yupSchema}
             onSubmit={async (values) => {
               mutation.mutate({
-                ...values,
-                blog_image:
-                  (itemEdit?.blog_image === "" && photo) ||
-                  (!photo && "") ||
-                  (photo === undefined && "") ||
-                  (photo && itemEdit?.blog_image !== photo?.name)
-                    ? photo?.name || ""
-                    : itemEdit?.blog_image || "",
+                // ...values,
+                // blog_image:
+                //   (itemEdit?.blog_image === "" && photo) ||
+                //   (!photo && "") ||
+                //   (photo === undefined && "") ||
+                //   (photo && itemEdit?.blog_image !== photo?.name)
+                //     ? photo?.name || ""
+                //     : itemEdit?.blog_image || "",
               });
               uploadPhoto();
             }}
@@ -157,9 +156,13 @@ const ModalAddBlog = ({ itemEdit }) => {
                           name="blog_title"
                         />
                       </div>
-                      
+
                       <div className="input-wrap">
-                        <InputText label="Author" type="text" name="blog_author" />
+                        <InputText
+                          label="Author"
+                          type="text"
+                          name="blog_author"
+                        />
                       </div>
 
                       <div className="input-wrap">
@@ -172,10 +175,9 @@ const ModalAddBlog = ({ itemEdit }) => {
                           <option value="environmental">Environmental</option>
                         </InputSelect>
                       </div>
-                      
 
                       <div className="input-wrap">
-                        <InputText label="Date" type="text" name="blog_date" />
+                        <InputText label="Reading Time" type="text" name="blog_reading_time" />
                       </div>
                     </div>
 
@@ -184,12 +186,11 @@ const ModalAddBlog = ({ itemEdit }) => {
                         <h3>Contents</h3>
                         <InputTextArea
                           label="Author Information"
-                          name="blog_information"
+                          name="blog_excerpt"
                           className="overflow-y-auto custom-scroll p-2 !h-[120px] outline-none  w-full rounded-md bg-primary text-body border border-line resize-none mb-5"
                         />
                       </div>
                       <div className="input-wrap">
-
                         <InputTextArea
                           label="Description"
                           name="blog_content"

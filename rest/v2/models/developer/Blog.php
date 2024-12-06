@@ -37,7 +37,7 @@ class Blog
     }
 
 
-    // create
+        // create
     public function create()
     {
         try {
@@ -45,18 +45,18 @@ class Blog
             $sql .= "( blog_title, ";
             $sql .= "blog_excerpt, ";
             $sql .= "blog_content, ";
-            $sql .= "blog_image, ";
+            // $sql .= "blog_image, ";
             $sql .= "blog_reading_time, ";
-            $sql .= "blog_image, ";
             $sql .= "blog_published_date, ";
             $sql .= "blog_category, ";
+            $sql .= "blog_author, ";
             $sql .= "blog_is_active, ";
             $sql .= "blog_datetime, ";
             $sql .= "blog_created ) values ( ";
             $sql .= ":blog_title, ";
             $sql .= ":blog_excerpt, ";
             $sql .= ":blog_content, ";
-            $sql .= ":blog_image, ";
+            // $sql .= ":blog_image, ";
             $sql .= ":blog_reading_time, ";
             $sql .= ":blog_published_date, ";
             $sql .= ":blog_category, ";
@@ -69,7 +69,7 @@ class Blog
                 "blog_title" => $this->blog_title,
                 "blog_excerpt" => $this->blog_excerpt,
                 "blog_content" => $this->blog_content,
-                "blog_image" => $this->blog_image,
+                // "blog_image" => $this->blog_image,
                 "blog_reading_time" => $this->blog_reading_time,
                 "blog_published_date" => $this->blog_published_date,
                 "blog_category" => $this->blog_category,

@@ -7,6 +7,7 @@ $blog = new Blog($conn);
 if (array_key_exists("blogid", $_GET)) {
     checkPayload($data);
 
+
     $blog->blog_aid = $_GET['blogid'];
     $blog->blog_title = checkIndex($data, "blog_title");
     $blog->blog_excerpt = checkIndex($data, "blog_excerpt");
@@ -17,13 +18,21 @@ if (array_key_exists("blogid", $_GET)) {
     $blog->blog_category = checkIndex($data, "blog_category");
     $blog->blog_author = checkIndex($data, "blog_author");
 
+
+
+
     $blog->blog_datetime = date("Y-m-d H:i:s");
     $blog_title_old = strtolower($data["blog_title_old"]);
-    // checkId($blog->blog_aid);
+    checkId($blog->blog_aid);
     compareName($blog, $blog_title_old, $blog->blog_title);
+
 
     $query = checkUpdate($blog);
     returnSuccess($blog, "blog", $query);
 }
 
+
 checkEndpoint();
+
+
+
