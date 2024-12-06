@@ -53,6 +53,7 @@ const BlogTable = ({ setItemEdit }) => {
     setId(item.blog_aid);
   };
 
+
   return (
     <>
       <div className="p-4 bg-secondary rounded-md mt-10 border border-line relative">
@@ -63,8 +64,10 @@ const BlogTable = ({ setItemEdit }) => {
               <tr>
                 <th>#</th>
                 <th>Status</th>
-                <th>Title</th>
-                <th></th>
+                <th className="w-[15%]">Title</th>
+                <th className="w-[15%]">Category</th>
+                <th>Author</th>
+                <th>Date</th>
               </tr>
             </thead>
             <tbody>
